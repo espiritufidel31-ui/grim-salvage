@@ -1,0 +1,73 @@
+name: Last Bastion Android
+on:
+  push:
+    branches: [last-bastion-godot]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - name: Install Android build tools
+        run: sdkmanager 'platform-tools' 'platforms;android-34' 'build-tools;34.0.0'
+      - name: Install Godot 4.4.1 and matching templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable'
+          curl --fail --location --retry 3 "$base/Godot_v4.4.1-stable_linux.x86_64.zip" --output /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          sudo install -m 755 /tmp/godot-bin/Godot_v4.4.1-stable_linux.x86_64 /usr/local/bin/godot
+          curl --fail --location --retry 3 "$base/Godot_v4.4.1-stable_export_templates.tpz" --output /tmp/templates.zip
+          unzip -q /tmp/templates.zip -d /tmp/godot-templates
+          mkdir -p "$HOME/.local/share/godot/export_templates/4.4.1.stable"
+          cp -r /tmp/godot-templates/templates/. "$HOME/.local/share/godot/export_templates/4.4.1.stable/"
+          godot --version
+      - name: Configure Android debug signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.android" "$HOME/.config/godot"
+          if [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkeypair -keystore "$HOME/.android/debug.keystore" -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=Android Debug,O=Android,C=US'
+          fi
+          cat > "$HOME/.config/godot/editor_settings-4.tres" <<SETTINGS
+          [gd_resource type="EditorSettings" format=3]
+          [resource]
+          export/android/java_sdk_path = "$JAVA_HOME"
+          export/android/android_sdk_path = "$ANDROID_HOME"
+          export/android/debug_keystore = "$HOME/.android/debug.keystore"
+          export/android/debug_keystore_user = "androiddebugkey"
+          export/android/debug_keystore_pass = "android"
+          SETTINGS
+      - name: Import and validate project
+        run: godot --headless --path last-bastion --editor --import --quit
+      - name: Run game logic tests
+        run: godot --headless --path last-bastion --script res://tests/test_game.gd
+      - name: Simulate a full region
+        run: godot --headless --path last-bastion --script res://tests/test_balance.gd
+      - name: Headless startup smoke test
+        run: godot --headless --path last-bastion --quit-after 120
+      - name: Export signed debug APK
+        shell: bash
+        run: |
+          mkdir -p last-bastion/build
+          godot --headless --path last-bastion --export-debug Android build/last-bastion-debug.apk
+          test -s last-bastion/build/last-bastion-debug.apk
+          "$ANDROID_HOME/build-tools/34.0.0/apksigner" verify --verbose last-bastion/build/last-bastion-debug.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Last-Bastion-debug-APK
+          path: last-bastion/build/last-bastion-debug.apk
+          if-no-files-found: error
+          retention-days: 14

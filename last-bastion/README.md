@@ -2,7 +2,7 @@
 
 This is a separate Godot 4.4.1 project and separate Android application ID from the original Java game. It is an early vertical slice, not the complete game.
 
-Select one of the glowing build pads, buy an archer or frost tower, and start the wave. Tap a lane near the hero to move the knight. The knight fights automatically; Shield Strike is an active area attack. Tapping a built tower lets you upgrade or sell it. Defend the Bastion through 10 waves. Gold, tower layout and progress are saved between runs; an interrupted battle restarts its wave. A loss repairs the Bastion and lets you retry the wave.
+Select one of the glowing build pads, buy an archer or frost tower, and start the wave. You can have up to four towers, so placement and upgrades matter. Tap a lane near the hero to move the knight. The knight fights automatically; Shield Strike is an active area attack. Tapping a built tower lets you upgrade or sell it. Defend the Bastion through 10 waves. Gold, tower layout and progress are saved between runs; an interrupted battle restarts its wave. A loss repairs the Bastion and lets you retry the wave.
 
 Included: Human Knight, three animated enemy roles plus a wave-10 large enemy, archers/frost towers, tower upgrades, leveling, gold, touch controls, shield strike, 10-wave objective, pause and local save. This preview does not include character creation, companion/rescue systems, gear, crafting, camp, audio, story, or a full boss mechanic. There is no internet, login, analytics, advertising or purchasing.
 

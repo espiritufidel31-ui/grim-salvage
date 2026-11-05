@@ -17,10 +17,10 @@ The project pins Android Gradle Plugin 8.8.2, Gradle wrapper 8.10.2, JDK 17, com
 Run locally from the repository root in an Android SDK environment:
 
 ```sh
-./gradlew --no-daemon testDebugUnitTest
-./gradlew --no-daemon assembleDebug
+bash gradlew --no-daemon testDebugUnitTest
+bash gradlew --no-daemon assembleDebug
 ```
 
-GitHub Actions runs those unit tests, builds the debug APK, and runs an emulator startup smoke test. Open **Actions**, select the latest successful **Android build and smoke test** run, and download the [32m`grim-salvage-debug-apk`[0m artifact. Extract it and install `app-debug.apk` on an Android 8.0+ phone.
+GitHub Actions runs those unit tests, builds the debug APK, and runs an emulator startup smoke test. Open **Actions**, select the latest successful **Android build and smoke test** run, and download the **grim-salvage-debug-apk** artifact. Extract it and install `app-debug.apk` on an Android 8.0+ phone.
 
 The first build is not considered verified until that workflow run finishes successfully.

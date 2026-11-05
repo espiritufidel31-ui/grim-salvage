@@ -23,8 +23,12 @@ jobs:
           java-version: '17'
           cache: gradle
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - name: Install pinned Android SDK packages
         run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Ensure Gradle wrapper is executable
+        run: chmod +x ./gradlew
       - name: Run engine tests
         run: ./gradlew --no-daemon testDebugUnitTest
       - name: Assemble debug APK
@@ -47,8 +51,12 @@ jobs:
           java-version: '17'
           cache: gradle
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - name: Install emulator SDK packages
         run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0" "emulator" "system-images;android-35;google_apis;x86_64"
+      - name: Ensure Gradle wrapper is executable
+        run: chmod +x ./gradlew
       - name: Start emulator and launch smoke test
         uses: reactivecircus/android-emulator-runner@v2
         with:

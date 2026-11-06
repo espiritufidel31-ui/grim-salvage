@@ -1,0 +1,88 @@
+name: The Tenth Bell Android
+on:
+  push:
+    branches: [tenth-bell]
+    paths: ['TheTenthBell/**', '.github/workflows/tenth-bell-android.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tenth-bell-android
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify all six packs and prepare atlases
+        run: |
+          python -m pip -q install Pillow==11.3.0
+          python TheTenthBell/tools/import_cast.py
+      - name: Prepare station scenery and fonts
+        run: |
+          if [ -f TheTenthBell/tools/station_art.py ]; then python TheTenthBell/tools/station_art.py; fi
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Godot 4.6.3
+        if: ${{ hashFiles('TheTenthBell/game/station.gd') != '' }}
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.6.3
+          use-dotnet: false
+          include-templates: true
+      - name: Import and test
+        if: ${{ hashFiles('TheTenthBell/game/station.gd') != '' }}
+        run: |
+          godot --headless --path TheTenthBell --editor --import > /tmp/bell-import.log 2>&1 || { cat /tmp/bell-import.log; exit 1; }
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Failed to load script' /tmp/bell-import.log; then cat /tmp/bell-import.log; exit 1; fi
+          timeout 200 godot --headless --path TheTenthBell --script res://tests/check_game.gd 2>&1 | tee /tmp/bell-qa.log
+          grep 'BELL TESTS PASSED' /tmp/bell-qa.log
+          mkdir -p "$GITHUB_WORKSPACE/build"
+          if [ -f TheTenthBell/tests/capture.gd ]; then
+            xvfb-run -a godot --path TheTenthBell --rendering-method gl_compatibility --audio-driver Dummy --script res://tests/capture.gd
+          fi
+      - name: Export signed APK
+        if: ${{ hashFiles('TheTenthBell/game/station.gd') != '' }}
+        run: |
+          mkdir -p "$HOME/.android" "$HOME/.config/godot" build
+          if [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkeypair -keystore "$HOME/.android/debug.keystore" -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=The Tenth Bell Playtest,O=Grim Salvage,C=PH'
+          fi
+          cat > "$HOME/.config/godot/editor_settings-4.6.tres" <<SETTINGS
+          [gd_resource type="EditorSettings" format=3]
+          [resource]
+          export/android/java_sdk_path = "$JAVA_HOME"
+          export/android/android_sdk_path = "$ANDROID_HOME"
+          export/android/debug_keystore = "$HOME/.android/debug.keystore"
+          export/android/debug_keystore_user = "androiddebugkey"
+          export/android/debug_keystore_pass = "android"
+          SETTINGS
+          godot --headless --path TheTenthBell --export-debug Android "$GITHUB_WORKSPACE/build/The-Tenth-Bell-v1.0.0.apk"
+          TOOLS=$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)
+          "$TOOLS" verify --verbose --print-certs build/*.apk
+          "$(dirname "$TOOLS")/aapt" dump badging build/*.apk | head -45
+          sha256sum build/*.apk | tee build/SHA256.txt
+      - name: Package editable project
+        if: ${{ hashFiles('TheTenthBell/game/station.gd') != '' }}
+        run: git archive --format=zip --output=build/The-Tenth-Bell-Source.zip HEAD:TheTenthBell
+      - uses: actions/upload-artifact@v4
+        if: ${{ hashFiles('build/*.apk') != '' }}
+        with:
+          name: The-Tenth-Bell-APK
+          path: build/*.apk
+      - uses: actions/upload-artifact@v4
+        if: ${{ hashFiles('build/The-Tenth-Bell-Source.zip') != '' }}
+        with:
+          name: The-Tenth-Bell-Source
+          path: build/The-Tenth-Bell-Source.zip
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && hashFiles('build/*.png') != '' }}
+        with:
+          name: The-Tenth-Bell-Playtest
+          path: build/*.png

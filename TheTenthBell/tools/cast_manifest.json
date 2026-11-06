@@ -1,0 +1,292 @@
+[
+ [
+  "123681",
+  "Samurai",
+  {
+   "Attack_1.png": "d6b637d5b5082153911f558f01374b31ef052398",
+   "Attack_2.png": "272da2f6c91fb1a588164c8253947f5d562888d0",
+   "Attack_3.png": "df2ca02c0f121af6b9ddb08ae763e83c8b9615f9",
+   "Dead.png": "2d7369f167df5942ff569ff760f3ecbd6abd7775",
+   "Hurt.png": "25fbed8d2ee9c9a8a78ad5b63b27dc17db807ab2",
+   "Idle.png": "13f4a7be64fe3e604eada2717afae99e069fe686",
+   "Jump.png": "e4793efb45bb2d37986e34f1937f6cb93d7d8cd0",
+   "Protection.png": "8d0e7d1f35b439aea67d5c3fef1ef3d6b7b20132",
+   "Run.png": "081b391b329ba52f248ddb58233788ed32c26d70",
+   "Walk.png": "f0871b059013beb4dd8c64bc866d7181e053eac8"
+  }
+ ],
+ [
+  "123681",
+  "Samurai_Archer",
+  {
+   "Arrow.png": "849a45245d0d21b26aa74436db9db5fd01081100",
+   "Attack_1.png": "0d7485b8f499ef2432f6ad147100b3854b5c82b9",
+   "Attack_2.png": "59bbaaee8d79e05a13d9fb72cac40c730038835e",
+   "Attack_3.png": "efb7e916a347926f9678f13aac828cc274e78270",
+   "Dead.png": "113cb2fbb7a8e69dcb94ec11db6ff102e0e5931a",
+   "Hurt.png": "f75200d09881e14b717c0784dff8f044526941f2",
+   "Idle.png": "3f05587e0b4f53115361f9e115f24d9ee735ebf0",
+   "Jump.png": "62a11dab8f6dccf62eff192dd5070c6e4eebfae6",
+   "Run.png": "3fb0ff0e30806a08f8dd954e0d9d90f40e84507e",
+   "Shot.png": "d631868dd0528137493bf58a8cb908f9510df266",
+   "Walk.png": "a0c6253e38f76740a25b873ab341c2d276322ad4"
+  }
+ ],
+ [
+  "123681",
+  "Samurai_Commander",
+  {
+   "Attack_1.png": "9af5eedee248d17e4cdd6658a66e97ac8ad9d7e9",
+   "Attack_2.png": "81dd2dbafb1b528443b75f1a046c91d32ce48545",
+   "Attack_3.png": "6677aa54b1e28622072360004e464f8856f25d53",
+   "Dead.png": "530f51c617da381b0942a800ac49dc4bff9c20f8",
+   "Hurt.png": "278aa3f47d9a7874de98690b0365281acbbb7170",
+   "Idle.png": "83551aa0a82d72096aa72af327615ecd51beb600",
+   "Jump.png": "0d4fce2faad9c26a6c9a7918788f2ae9c3ad265d",
+   "Protect.png": "5d3a9b62db31d2c8ea43e9967b27ce2e4dd7d757",
+   "Run.png": "7d713ea9a1f4ed7703e91da22c6e3d9c43820d83",
+   "Walk.png": "9185705c87f96299da99a4c5f2577067c81e1f38"
+  }
+ ],
+ [
+  "453698",
+  "Shinobi",
+  {
+   "Attack_1.png": "4739cb43c817ae91a0b53b0d8d124849a1684ad3",
+   "Attack_2.png": "49fd72145fb0a2330e7dafa362950af4947b5527",
+   "Attack_3.png": "2b25b7256933773a56790fcbba00c1d55af9181d",
+   "Dead.png": "0903819941df3d715261fc2aa20591393432ab4b",
+   "Hurt.png": "515afca79af0db69fad3fbbb5a63ffa0dd66d0e7",
+   "Idle.png": "2bd4d950c20b5a7d9a6120c146c15b1a7da4d980",
+   "Jump.png": "8f32c9de783c4a73a50ac39a245089a49ed2d32c",
+   "Run.png": "7726f0bb07f05f9c8b0fd057383401703f3cecfb",
+   "Shield.png": "824caaf8a94e7454b585b21df65bf5a231ddfb7c",
+   "Walk.png": "2a4d879350a82c6e1ffa079a7a57fd0306bc1284"
+  }
+ ],
+ [
+  "453698",
+  "Fighter",
+  {
+   "Attack_1.png": "752d374f5e530824d67649bafdc229f6a2662214",
+   "Attack_2.png": "d3ac9e435562f89010c1bac1513c051a9469244a",
+   "Attack_3.png": "3a3ac0e8b1ce4083c8a4cf2a6475657f91355c1b",
+   "Dead.png": "57fbccc949e7820f559433fb68b84c690ff8b05e",
+   "Hurt.png": "02df88566183f0254e01e974c9a999071e36dcd7",
+   "Idle.png": "cf2958471f593f691354d255b7cec28a2bdb0347",
+   "Jump.png": "0cb85057c0e892d82023cb94ad53994bd3826e4e",
+   "Run.png": "1a6bc91900c17aa3874e52a4ceda6f120a4ba561",
+   "Shield.png": "350fc813a7ca7fb4f6ca4bd466d6ebb3bee306ea",
+   "Walk.png": "3f8246e34dd0e8a341f026c4c3989646ead67c8b"
+  }
+ ],
+ [
+  "453698",
+  "Samurai",
+  {
+   "Attack_1.png": "2ec6c7b37243a01ecbd4d70fada0afaa34949c91",
+   "Attack_2.png": "2692837815849ba54eafc585bc6899e5defe699c",
+   "Attack_3.png": "643e8e6e310a80b5d6b1d11efc3b395ef1512e98",
+   "Dead.png": "231d79a87d46bd23038c1caf93ef2601692dfa90",
+   "Hurt.png": "5d59fd97a4e5f9eac82c6f46f2ca894badc447b1",
+   "Idle.png": "770d817a3c5742e758686f52a9d2738efa067227",
+   "Jump.png": "12eceb8da9c526e7d03831daf50d048cb51d9034",
+   "Run.png": "921d4c4689d58ec5986bb494e97fdf14d6797b01",
+   "Shield.png": "57c2819cca0c58492456455a665a4f2302c72166",
+   "Walk.png": "8f3391476052ea0a8e2001c58e4aa1717a06a519"
+  }
+ ],
+ [
+  "622999",
+  "1 Pink_Monster",
+  {
+   "Double_Jump_Dust_5.png": "1558c8d067c5a508ab1910ba6e082904c643bcd8",
+   "Pink_Monster.png": "36ad589b71d5bb48dab3c24d9b75c406135d92f9",
+   "Pink_Monster_Attack1_4.png": "e55eacdc5770d01f6e1cb38f7b143fb561d7afe6",
+   "Pink_Monster_Attack2_6.png": "e76abe4ac2c859d3e46fa62761358699d3172a0e",
+   "Pink_Monster_Climb_4.png": "b7b8d0568f2be66b1635213df5342e02e7a0dd6c",
+   "Pink_Monster_Death_8.png": "413f6ff687b814c5702812845860d0a56cad9278",
+   "Pink_Monster_Hurt_4.png": "7e2590f87f05699a7c185fedd735176226d48d82",
+   "Pink_Monster_Idle_4.png": "6d49c4601d8c84772b5742a9d9f2f640632b9847",
+   "Pink_Monster_Jump_8.png": "1403e79eac51e5a264380c90a9d1f4907b8bdb15",
+   "Pink_Monster_Push_6.png": "e23fd813ef431f5c920446f805d7413523e5f595",
+   "Pink_Monster_Run_6.png": "bc2beda2267081bc7fb24d297351c667df10963a",
+   "Pink_Monster_Throw_4.png": "b830a8182a5b85bcf2c1c2bd7a3d0342d9495699",
+   "Pink_Monster_Walk+Attack_6.png": "39c545a66c8a0457892fda980d69ea37483643d6",
+   "Pink_Monster_Walk_6.png": "30b1fc1254356388b8e25ce5100f8c25ea1956f6",
+   "Rock1.png": "eed143bc9abe53f5653a40da71b48e6ffc279fc2",
+   "Rock2.png": "0167f1bc2e151df514205aff9cf5840f4806cec5",
+   "Walk_Run_Push_Dust_6.png": "3da6cc5d36bef244779848e628aff09d3610a628"
+  }
+ ],
+ [
+  "622999",
+  "2 Owlet_Monster",
+  {
+   "Double_Jump_Dust_5.png": "1558c8d067c5a508ab1910ba6e082904c643bcd8",
+   "Owlet_Monster.png": "fca39362291f11a25b8d66e8dc15480bcfa0ff7f",
+   "Owlet_Monster_Attack1_4.png": "a94929f22265c456d5b5f306a37e523dd7626738",
+   "Owlet_Monster_Attack2_6.png": "5574583e5060e0adb70ec5f4e824cfa161859d0d",
+   "Owlet_Monster_Climb_4.png": "b7a1bd0b4e121e4ef68afe25d0b3fa355e2e5bdd",
+   "Owlet_Monster_Death_8.png": "beb12d19bbbb09985367b12c1b613265b2d2824c",
+   "Owlet_Monster_Hurt_4.png": "10715d9a57779d322a57f82788148c19c7b8f466",
+   "Owlet_Monster_Idle_4.png": "f29b95b6b22d78509eff6a6edc2fc923dd5b79cd",
+   "Owlet_Monster_Jump_8.png": "556585b35ac0b320671b1db101c5f55c9c6e70f8",
+   "Owlet_Monster_Push_6.png": "34a82c37469cfd476372044f9f43bcf1d9f3da17",
+   "Owlet_Monster_Run_6.png": "23a89e014c3a9ee64fd32aca551df20df32bfd5e",
+   "Owlet_Monster_Throw_4.png": "7c87d8c9c4baefd43675fc77a817e004f3f0f326",
+   "Owlet_Monster_Walk+Attack_6.png": "f51eba8835fdcbb904c1bf69844f1e82821022c2",
+   "Owlet_Monster_Walk_6.png": "870e571c03a4dba89602e8ac09e9053972e76fbb",
+   "Rock1.png": "eed143bc9abe53f5653a40da71b48e6ffc279fc2",
+   "Rock2.png": "0167f1bc2e151df514205aff9cf5840f4806cec5",
+   "Walk_Run_Push_Dust_6.png": "3da6cc5d36bef244779848e628aff09d3610a628"
+  }
+ ],
+ [
+  "622999",
+  "3 Dude_Monster",
+  {
+   "Double_Jump_Dust_5.png": "1558c8d067c5a508ab1910ba6e082904c643bcd8",
+   "Dude_Monster.png": "ba880429e823664034cec2c81d50c54e4c99b299",
+   "Dude_Monster_Attack1_4.png": "d8ba1a012c2d13c798fd910a203269325ec00f52",
+   "Dude_Monster_Attack2_6.png": "b35789710889aa1f96619f13591ee8219e491827",
+   "Dude_Monster_Climb_4.png": "3ca94f5847349a4ebe214c5dab484209fcc35f7e",
+   "Dude_Monster_Death_8.png": "dbff72e1ad7e5b3cfe27fb0f5a335c3fd7ca7d18",
+   "Dude_Monster_Hurt_4.png": "9c137c15dc54bc8d51ff1cfa076e62a66f7fe732",
+   "Dude_Monster_Idle_4.png": "ef6c41b1e2fd43f69d3fb5d8e765f8430e65347b",
+   "Dude_Monster_Jump_8.png": "ae33963644e6c24c66092a8f7512431397222145",
+   "Dude_Monster_Push_6.png": "40921d92a1e55996b17cfb4696366b53fe39915a",
+   "Dude_Monster_Run_6.png": "c08d630f8a1b7c58f75f44b9142b21e12122fcd4",
+   "Dude_Monster_Throw_4.png": "b37a095e19da281ee1a5d0211b1f15a58c65045f",
+   "Dude_Monster_Walk+Attack_6.png": "c2e5dcd706a4d081452129a93e94be57fc3c9a59",
+   "Dude_Monster_Walk_6.png": "1124660f71c6e5ba3189a2026910734a083ccc15",
+   "Rock1.png": "eed143bc9abe53f5653a40da71b48e6ffc279fc2",
+   "Rock2.png": "0167f1bc2e151df514205aff9cf5840f4806cec5",
+   "Walk_Run_Push_Dust_6.png": "3da6cc5d36bef244779848e628aff09d3610a628"
+  }
+ ],
+ [
+  "131479",
+  "Satyr_1",
+  {
+   "Attack.png": "f2ab42262ce52e5e592bf2e5acf34b415db5052f",
+   "Charge.png": "164d49fcaa9937a176ee7f3b8d7e8181d809dbbf",
+   "Dead.png": "6e13cf292943d23195d402cbef76e27396bca70f",
+   "Hurt.png": "0b71c35fb37b413bb5da9b204447423f20c37f1e",
+   "Idle.png": "2405ba50b00f1c7f4656857d2122ec4af26edd3f",
+   "Walk.png": "ceab1443716561d0725f2c41265ede643be62f3b"
+  }
+ ],
+ [
+  "131479",
+  "Satyr_2",
+  {
+   "Attack.png": "a7531e0f17ea14c86fe23068061ba198ee498e46",
+   "Charge.png": "93f13f481490613f15922fde93e901506013d6d0",
+   "Dead.png": "4d941dd96e5fb48d914575f7a74ad03905141087",
+   "Hurt.png": "d6aa5f16449799a0773f1a0b047b009dfe53cb1a",
+   "Idle.png": "839ad8c9db7f1b5ad6cb14c5bc1e883421e6ad59",
+   "Walk.png": "b02ca0942dd0143ff8be75595e94637f143c65bc"
+  }
+ ],
+ [
+  "131479",
+  "Satyr_3",
+  {
+   "Attack.png": "d2fd6fe0f6a0bfd49f07e32ae08e1351abede63d",
+   "Charge.png": "50641c409a2e5ccc07122a6854232576b310559e",
+   "Dead.png": "c074b12ca4df8e28f70b6a69ada1003f555ff9c1",
+   "Hurt.png": "c08b0fe628129143225627af4de81e0faae17617",
+   "Idle.png": "3476ad83a02d8113c0e343906c1e01efc31aab46",
+   "Walk.png": "319852f2ae707c19c100837da7157602ea46f758"
+  }
+ ],
+ [
+  "242415",
+  "Girl_1",
+  {
+   "Attack.png": "923c4101ae0e4f613b78bf518322d2988de50b5b",
+   "Book.png": "1e82b2ee52306ae715c84cad98741cce043bb8d9",
+   "Dialogue.png": "d5858994522fd0d325378108cde1017f2867a265",
+   "Idle.png": "c79fa46d0ff16a5334defba93ab7ac643a182b8e",
+   "Protection.png": "4fe670979aab4f29f68a2e777da471b0e615d271",
+   "Walk.png": "2d0c1eb4cd4698314102c3f455161877c644777b"
+  }
+ ],
+ [
+  "242415",
+  "Girl_2",
+  {
+   "Attack.png": "39cb9e83513da62c2988ddec4e7145dfa6480869",
+   "Dialogue.png": "8f452e6d73c35afee54c9acbb773587ce157b883",
+   "Idle.png": "db386c3c7510f531eff3b79df14247b263a9b5fc",
+   "Protection.png": "e4ac31582dc3d6083dc6e98f1937270316f22e6f",
+   "Walk.png": "1a671090942843e2d65de910a3557846948b960f"
+  }
+ ],
+ [
+  "242415",
+  "Girl_3",
+  {
+   "Attack.png": "76b26c73d535094278fb718c4d627027f2437617",
+   "Dialogue.png": "defa806d9617c76064c7314839dbb25f2dbcbac8",
+   "Idle.png": "c0456ae7938059dd11b0c58869a2bded47bf8486",
+   "Protection.png": "e38428f0b0782d43740f76bc760245a8caa893d7",
+   "Walk.png": "11985a71f00cd6f4863f1d070884b1ec88e77837"
+  }
+ ],
+ [
+  "404916",
+  "Graffiti_Artist_1",
+  {
+   "Attack_1.png": "c1b071ba97e1cdf64f54e16981773320180a11de",
+   "Attack_2.png": "038289c79cea876951fde26c21bed976d0ce731c",
+   "Attack_3.png": "bae18ff7f0907066b2879e5a4d227a6cb5227092",
+   "Hurt_1.png": "42ef4a72b2fe93082c6548f424bc2915b179453f",
+   "Hurt_2.png": "6aaf9a7ee7d2d78f884c7b57fdf460c3eff457d0",
+   "Idle.png": "c3031e98ae995dbd30bcd7ac001ac83ed699139c",
+   "Jump.png": "baad987e6687b64f2e1a78b2ffbab7e3f18ce017",
+   "Jump_shot.png": "206fc317255ee27203256f445e7a4c207cfee65a",
+   "K.O..png": "b4f2238f963e5df58613f8fefe4b41481eb0dd32",
+   "Special_Blow_1.png": "fce68200dc66585f09567b370726dfabab357826",
+   "Special_Blow_2.png": "c0eec8fcab5191e0f01c227f2b5e3bd0b002febd",
+   "Walk.png": "d326340c2d765db0cb296424a425791bf0e1c4a3"
+  }
+ ],
+ [
+  "404916",
+  "Graffiti_Artist_2",
+  {
+   "Attack_1.png": "81e316e6d84437659fc695ef9971d97ff943b86a",
+   "Attack_2.png": "89c3f26096620b1af3f4889f65058731828fcdca",
+   "Attack_3.png": "f0888cdb8ed69122c58d0792d7d7073e17472590",
+   "Hurt_1.png": "6b8597b3c0112809fd4f1cdf9042c978abcc3431",
+   "Hurt_2.png": "347370914ad915c0076aa164602062653f5ee87c",
+   "Idle.png": "010ec0db70394ed748ce1b5b24631c671a2e4fcb",
+   "Jump.png": "fc328252aeb38c511357fc8d867e1a93277ca262",
+   "Jump_shot.png": "052dacd01fcdd5ea806bb1dbb6cb857c6fa5e736",
+   "K.O..png": "a849d8050288394c2c181741745191d78929c8d6",
+   "Special_Blow_1.png": "2ab6cb09b82ba7e8ec6e97f05a98d6f673eeb048",
+   "Special_Blow_2.png": "beb8bfda42f4ead2ec4498869c20b1f997675148",
+   "Walk.png": "0021d3bee66487522a36682ead0c4d0ccfb53e5b"
+  }
+ ],
+ [
+  "404916",
+  "Graffiti_Artist_3",
+  {
+   "Attack_1.png": "11db2924f75537647bb8fb1474f96eb7b09797f7",
+   "Attack_2.png": "4c4c8e0a96584e006eb7e35ba3fc4140cc7a569c",
+   "Attack_3.png": "4f758c04d9dc61bcaf1ad0b21a8e4aac93fef7e1",
+   "Hurt_1.png": "4cb4dacbcb53779e0a8c62e041eeb86cd8f3aa78",
+   "Hurt_2.png": "38ed77ff199a7e651bc4eb2a3ca6611d58c1eedf",
+   "Idle.png": "59e9ea367c3daa0e2ddb4628e67127dcd39ee2c9",
+   "Jump.png": "676a0aea5ad2f3706b714c54174fd9c3e9c9953c",
+   "Jump_shot.png": "977b39bb63d669b1aa335016860b7a904ab60345",
+   "K.O..png": "e6a6d88e116437937ace41c72bcce9ad0981ae23",
+   "Special_Blow_1.png": "124960564fac868a5e753d136732d20955a4a033",
+   "Special_Blow_2.png": "1f1093c12dd1eb2734f03327408ecd29353c481c",
+   "Walk.png": "26fb6c1b2a6818d3a834e0b7d1c5e30e5511c8a0"
+  }
+ ]
+]

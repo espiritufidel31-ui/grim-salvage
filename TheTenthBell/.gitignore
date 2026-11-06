@@ -1,0 +1,9 @@
+.godot/
+cast/
+art/*.png
+art/*.import
+art/audio/
+art/fonts/*.ttf
+art/fonts/*.import
+build/
+__pycache__/

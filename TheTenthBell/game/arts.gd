@@ -12,6 +12,8 @@ static func basic(m,a,e,bonus=false,inherit=true):
 		else:basic_hit(m,a,e,power,inherit,bonus))
 static func basic_hit(m,a,e,power,inherit,bonus):
 	if not m.alive(e):return
+	if e.marked:power*=1.25;e.marked=false
+	if e.outline:power*=1.45;e.outline=false
 	if inherit:
 		a.hits+=1
 		if m.breach>0:e.armor=maxf(0,e.armor-4);e.shield=0;m.breach-=1
@@ -23,10 +25,10 @@ static func basic_hit(m,a,e,power,inherit,bonus):
 			5:
 				if a.last_side!=0 and a.last_side!=e.side:
 					m.later(0.16,func():m.hurt(e,power*0.5,a.id))
-			6:if e.pushed>0:power*=1.65
+			6:
+				if e.pushed>0:m.later(0.1,func():m.hurt(e,power*0.65,a.id))
 			7:
 				if not e.seen_owlet:e.seen_owlet=true;e.marked=true
-				else:power*=1.2
 			8:m.push(e,0.035)
 			9:if a.hits%3==0:m.heal(2.4)
 			10:
@@ -40,10 +42,9 @@ static func basic_hit(m,a,e,power,inherit,bonus):
 			13:if e.pushed>0:a.haste=2.5
 			14:if not e.detain:e.detain=true;e.slow=2.3
 			15:
-				if a.hits%3==0:e.burn=2.8;e.burn_d=power*0.22
-			16:
-				if e.outline:power*=1.45;e.outline=false
-				else:e.outline=true
+				e.ink+=1
+				if e.ink%3==0:e.burn=2.8;e.burn_d=power*0.22
+			16:e.outline=true
 			17:e.armor=maxf(0,e.armor-1.4);e.shield=maxf(0,e.shield-2.5)
 		a.last_side=e.side;a.last_id=e.uid
 	m.hurt(e,power,a.id);m.cue.emit("hit")

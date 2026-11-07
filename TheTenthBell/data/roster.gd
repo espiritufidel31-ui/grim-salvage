@@ -9,7 +9,7 @@ const HEROES=[
 ["Copper Heel","Brawler","Every third strike staggers its target.","Rising Heel","Launch a foe and interrupt its attack.","Aftershock","Landing damages nearby foes.","Iron Heel","Break armor on contact."],
 ["Moon Ronin","Duelist","Changing flanks adds a follow-up cut.","Twin Crescent","Send a blade wave down each stair.","Moon Return","Both waves strike on return.","Double Draw","Send both cuts to the focus side."],
 ["Pip","Demolitions","Freshly pushed foes take a double punch.","Pop Rock","Stick a pebble to a foe. The next hit detonates it.","Rock Cluster","Seed neighbors with pebbles.","Hard Candy","The blast strips armor."],
-["Owlet","Spotter","The first stone marks a foe for bonus damage.","Bank Shot","Bounce a stone through three targets.","Cross Bank","Bounce between both stairs.","Lone Star","Bounce repeatedly on a lone foe."],
+["Owlet","Spotter","First stones mark foes. The next party hit deals bonus damage.","Bank Shot","Bounce a stone through three targets.","Cross Bank","Bounce between both stairs.","Lone Star","Bounce repeatedly on a lone foe."],
 ["Rook","Bulwark","Heavy jabs push back close enemies.","Boulder Roll","Roll a rock down a stairway.","Roadblock","Leave a temporary barricade.","Stone Rain","Shards strike the rear rank."],
 ["Briar","Grove Healer","Every third bolt heals the party.","Bramble Knot","Root a group of foes in place.","Lifebloom","Heal while the roots hold.","Thorn Relay","Roots spread to the other stair."],
 ["Vesper","Stormcaller","Three hits on one foe discharge a spark.","Forked Storm","Chain lightning through several enemies.","Hush Bolt","Silence the final enemy.","Arc Return","Send a final bolt to the first."],
@@ -17,8 +17,8 @@ const HEROES=[
 ["Mina","Bookbinder","Two hits bookmark a foe for extra return damage.","Overdue","Throw your textbook through a line and back.","Quiet Please","The returning book silences casters.","Footnote","Jump to another bookmarked foe."],
 ["Relay Captain","Striker","Collisions briefly increase attack speed.","Relay Kick","Kick the lead enemy into the one behind it.","Relay Chain","Chain up to three collisions.","First Break","Break armor on first impact."],
 ["Hall Monitor","Warden","First contact with a new enemy slows it.","Quiet Zone","Draw a chalk ward that catches shots.","Return Slip","Reflect the last caught shot.","First Aid","Absorbed shots heal the party."],
-["Matchstick","Firestarter","Every third paint hit ignites its target.","Hot Stencil","Leave burning paint across the stair.","Wildfire","Burning foes spread fire on defeat.","Flash Point","Ring the bell to detonate paint."],
-["Gilt","Illusionist","Outlined foes empower the next basic hit.","Carbon Copy","Paint a double that copies the leader's basic.","Diptych","Put a double on each flank.","True Copy","Copies inherit on-hit passives."],
+["Matchstick","Firestarter","Three paint hits on the same target ignite it.","Hot Stencil","Leave burning paint across the stair.","Wildfire","Burning foes spread fire on defeat.","Flash Point","Ring the bell to detonate paint."],
+["Gilt","Illusionist","Outlines empower the next basic hit from any ally.","Carbon Copy","Paint a double that copies the leader's basic.","Diptych","Put a double on each flank.","True Copy","Copies inherit on-hit passives."],
 ["Verdigris","Armorbreaker","Green spray corrodes armor on every hit.","Peel Coat","Dissolve a shield and splash the rear rank.","Glass Rain","Fragments damage the rear rank.","Patina","Fragments form a party barrier."]]
 const RANGED=[1,7,9,10,11,12,15,16,17]
 const SPEEDS=[0.93,1.0,1.03,0.73,0.79,0.91,0.73,0.94,1.03,0.94,0.95,0.88,0.99,0.78,0.83,0.85,0.88,0.9]

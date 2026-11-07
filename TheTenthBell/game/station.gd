@@ -11,6 +11,7 @@ var overlay=""
 var selection=0
 var first_charm=0
 var detail=false
+var preview_left=0.0
 var time=0.0
 var accumulator=0.0
 var input_delay=0.0
@@ -51,7 +52,8 @@ func play_cue(kind):
 	var player=voices[voice_index%voices.size()];voice_index+=1
 	player.stream=sounds[kind];player.volume_db=-22 if kind=="hit" else (-18 if kind=="kill" else -9);player.play()
 func _process(dt):
-	time+=dt;input_delay=maxf(0,input_delay-dt)
+	time+=dt;input_delay=maxf(0,input_delay-dt);preview_left=maxf(0,preview_left-dt)
+	first_charm=mini(first_charm,mini(3,int(best_wave()/10.0)))
 	if screen=="play" and run!=null and run.phase=="battle" and overlay=="":
 		accumulator+=minf(dt,0.1)
 		while accumulator>=1.0/45.0:
@@ -125,6 +127,7 @@ func act(command):
 		"prev":selection=posmod(selection-1,18)
 		"next":selection=(selection+1)%18
 		"detail":detail=not detail
+		"preview":preview_left=.8
 		"charm":first_charm=(first_charm+1)%(mini(3,int(best_wave()/10.0))+1)
 		"start":
 			if screen=="select":
@@ -165,9 +168,7 @@ func act(command):
 				if settings.music:music.play()
 				else:music.stop()
 func best_wave():
-	var best=0
-	for n in profile.best:best=maxi(best,int(n))
-	return best
+	return int(profile.best[selection])
 func name_for(id):return "Iris" if id==18 else Book.HEROES[int(id)][0]
 func available_offers():
 	var offers=run.shop.get("offers",[]).duplicate()
@@ -194,10 +195,11 @@ func draw_selector():
 	mid("THE TENTH BELL",75,40,CREAM,true)
 	mid("18 KEEPERS  /  ONE LAST STATION",99,12,GOLD)
 	button(Rect2(306,14,40,37),"=","settings",false,true,24)
-	mid("Choose who holds the crossing.",126,13,MUTED)
+	mid("Swipe to browse. Tap a keeper to preview.",126,12,MUTED)
 	hero(posmod(selection-1,18),Vector2(75,289),time,"idle",.78,1,Color(.7,.8,.8,.6))
 	hero((selection+1)%18,Vector2(285,289),time,"idle",.78,-1,Color(.7,.8,.8,.6))
-	draw_ellipse_shadow(Vector2(180,337),29);hero(selection,Vector2(180,337),time,"idle",1.36)
+	draw_ellipse_shadow(Vector2(180,337),29);hero(selection,Vector2(180,337),time,"attack" if preview_left>0 else "idle",1.36,1,Color.WHITE,1-preview_left/.8 if preview_left>0 else -1)
+	boundaries.append([Rect2(120,205,120,139),"preview"])
 	button(Rect2(14,283,42,43),"<","prev");button(Rect2(304,283,42,43),">","next")
 	plate(Rect2(12,350,336,224))
 	var labels=["Blade","Ninja","Tiny","Satyr","School","Paint"]
@@ -263,7 +265,7 @@ func draw_intermission():
 		var h=Book.HEROES[run.lead]
 		var options=[]
 		if evolve:options=[[h[5],h[6],"evo1"],[h[7],h[8],"evo2"]]
-		else:options=[["Signature II" if run.rank==1 else ("Evolve your skill" if run.rank==2 else "Quick hands"),"Stronger skill, shorter cooldown." if run.rank==1 else ("Choose one of two new powers." if run.rank==2 else "+7% attack speed."),"signature" if run.rank<3 else "tempo"],["Sharpen","+12% base attack damage.","might"],["Catch your breath","+12 max HP and restore 24 HP.","vital"]]
+		else:options=[["Signature II" if run.rank==1 else ("Evolve your skill" if run.rank==2 else "Quick hands"),("Cooldown 9s to 7.5s." if run.lead in [0,2,14] else "Skill +16%; cooldown 9s to 7.5s.") if run.rank==1 else ("Choose one of two new powers." if run.rank==2 else "+7% attack speed."),"signature" if run.rank<3 else "tempo"],["Sharpen","+12% base attack damage.","might"],["Catch your breath","+12 max HP and restore 24 HP.","vital"]]
 		for i in options.size():
 			var o=options[i];var y=287+i*76
 			button(Rect2(24,y,312,65),"","upgrade:"+o[2],i==0)
@@ -309,9 +311,10 @@ func draw_market():
 				var id=int(run.owned[crew_index%run.owned.size()]);var trained=int(run.trained.get(str(id),0))
 				button(Rect2(24,389,40,40),"<","crew_prev");button(Rect2(296,389,40,40),">","crew_next")
 				mid(name_for(id)+"  +"+str(trained),416,25,CREAM,true)
-				button(Rect2(24,439,151,39),"LEFT SEAT","left",run.slots[0]==id,true,18);button(Rect2(184,439,152,39),"RIGHT SEAT","right",run.slots[1]==id,true,18)
-				button(Rect2(24,487,312,34),"TRAIN  /  %d GOLD"%(28+14*trained) if trained<4 else "TRAINING COMPLETE","train",false,trained<4 and run.gold>=28+14*trained,18)
-				button(Rect2(24,529,312,30),"MEAL FOR IRIS  /  12G  /  BOND %d"%int(profile.bond),"feed",false,profile.rescued and not run.shop.fed and run.gold>=12,16)
+				button(Rect2(24,439,151,48),"LEFT SEAT","left",run.slots[0]==id,true,18);button(Rect2(184,439,152,48),"RIGHT SEAT","right",run.slots[1]==id,true,18)
+				button(Rect2(24,501,151,48),"TRAIN / %dG"%(28+14*trained) if trained<4 else "MAX TRAINING","train",false,trained<4 and run.gold>=28+14*trained,18)
+				button(Rect2(184,501,152,48),"IRIS MEAL / 12G","feed",false,profile.rescued and not run.shop.fed and run.gold>=12,17)
+				mid("IRIS BOND  %d"%int(profile.bond),566,11,MUTED)
 		2:
 			mid(Book.WEAPONS[int(run.weapon)],416,25,CREAM,true)
 			mid(Book.WEAPON_DESC[int(run.weapon)],442,13,MUTED)

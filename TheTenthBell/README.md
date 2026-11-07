@@ -6,7 +6,7 @@ An offline portrait Android RPG about eighteen keepers defending the last statio
 
 Pick any of the 18 heroes. Basics are automatic; tap an enemy to focus. Use your signature and ring the bell during the red portion of an enemy windup for a perfect interrupt. Each skill has two possible evolutions. After every tenth wave a merchant offers recruits, training, equipment changes and a meal for rescued Iris. Two allies fight automatically beside your keeper; reserves can be swapped at the cart. New formations escalate at waves 11, 21 and 31 and continue scaling indefinitely.
 
-The first hire at wave 10 is free. Weapons and charms drop on seventh-wave and boss clears. Starting charms unlock with each ten-wave milestone. Iris can be rescued during wave 7 (or a later retry wave). Her rescue and meal bond, best waves and unlocked starting charms persist across runs. Equipment, gold and other recruits belong to the current run.
+The first hire at wave 10 is free. Weapons and charms drop on seventh-wave and boss clears. Starting charms unlock separately for each hero at their ten-, twenty- and thirty-wave milestones. Iris can be rescued during wave 7 (or a later retry wave). Her rescue and meal bond, best waves and unlocked starting charms persist across runs. Equipment, gold and other recruits belong to the current run.
 
 Pause freezes all combat, timers and projectiles. Backgrounding the app pauses it. A checkpoint stores the beginning of the current wave, or exact purchases at a merchant visit. Continue replays an unfinished wave. Returning to character selection keeps that checkpoint; starting a new run asks before replacing it.
 

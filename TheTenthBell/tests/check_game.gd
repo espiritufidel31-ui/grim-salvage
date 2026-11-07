@@ -46,6 +46,23 @@ func run_tests():
 				if foe.hp<foe.max:damaged=true
 			check(damaged,"Combat did not reach foes %d/%d"%[id,branch]);m.dispose()
 	print("ALL 36 EVOLUTION COMBAT PATHS EXECUTED")
+	# Shared marks must be consumed by a different party member, once.
+	var passives=Run.new();passives.new_run(7,Run.default_meta(),0,4)
+	var target=passives.spawn({"kind":0,"side":1,"elite":false});target.hp=1000;target.max=1000;target.p=.8
+	var partner=passives.actor_data(0,0)
+	Run.Arts.basic_hit(passives,passives.actors[0],target,10.0,true,false)
+	check(target.marked,"Owlet failed to mark a new target")
+	var before=target.hp;Run.Arts.basic_hit(passives,partner,target,10.0,true,false)
+	check(is_equal_approx(before-target.hp,12.5) and not target.marked,"Owlet's mark did not empower a teammate once")
+	var gilt=passives.actor_data(16,1);Run.Arts.basic_hit(passives,gilt,target,10.0,true,false)
+	before=target.hp;Run.Arts.basic_hit(passives,partner,target,10.0,true,false)
+	check(is_equal_approx(before-target.hp,14.5) and not target.outline,"Gilt's outline did not empower a teammate once")
+	var fire=passives.actor_data(15,1);var other=passives.spawn({"kind":0,"side":-1,"elite":false});other.hp=1000;other.max=1000
+	for foe in [target,other,target,other,target]:Run.Arts.basic_hit(passives,fire,foe,10.0,true,false)
+	check(target.burn>0 and other.burn==0,"Paint ignition is not tracked per target")
+	passives.dispose()
+	print("SHARED MARKS, OUTLINES AND PER-TARGET FIRE PASSED")
+
 	var m=Run.new();var meta=Run.default_meta();m.new_run(12,meta,0,1843)
 	for w in range(1,11):
 		drive(m);upgrades(m)

@@ -47,7 +47,9 @@ func button(r,label,command,accent=false,enabled=true,size=19):
 	plate(r,Color("34564e") if accent else PANEL,GOLD if accent else RIM)
 	var color=CREAM if enabled else RIM
 	mid(label,r.position.y+r.size.y/2+size*.32,size,color,true,r.position.x+r.size.x/2)
-	if enabled:boundaries.append([r,command])
+	if enabled:
+		var grow=Vector2(maxf(0,48-r.size.x),maxf(0,48-r.size.y))*.5
+		boundaries.append([Rect2(r.position-grow,r.size+grow*2),command])
 func meter(r,value,color):
 	draw_rect(r,INK);draw_rect(Rect2(r.position+Vector2.ONE,r.size-Vector2(2,2)),RIM)
 	draw_rect(Rect2(r.position+Vector2.ONE,Vector2(maxf(0,(r.size.x-2)*clampf(value,0,1)),r.size.y-2)),color)
@@ -63,6 +65,9 @@ func hero(id,feet,time,state="idle",scale_amount=1.0,face=1,tint=Color.WHITE,pro
 	draw_set_transform(off)
 func enemy(e,m,t):
 	var p=m.enemy_pos(e);var s=1.24 if e.kind==5 else (0.94 if e.elite else 0.8)
+	if e.kind==5 and e.wind>=0:
+		var glow=Color(CORAL if e.wind<=.46 else GOLD,.16+.1*sin(t*13))
+		draw_line(Vector2(180+e.side*166,204),Vector2(180+e.side*25,334),glow,14)
 	var cell=int(t*8)%6 if e.wind<0 and e.stun<=0 else 0
 	draw_set_transform(off+p,0,Vector2(s*(-e.side),s))
 	draw_texture_rect_region(foe_sheet,Rect2(-24,-49,48,58),Rect2(cell*48,int(e.kind)*58,48,58),Color(2,1.5,1.2) if e.flash>0 else Color.WHITE)

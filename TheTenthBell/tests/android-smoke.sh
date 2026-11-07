@@ -28,9 +28,14 @@ adb shell input tap 524 748
 sleep 1
 adb shell input tap 440 1204
 wait_log 'TenthBell: start hero=12 wave=1'
-sleep 4
-adb shell input tap 170 1156
+for i in $(seq 1 16); do
+  adb shell input tap 170 1156
+  if adb logcat -d | grep -F "TenthBell: signature used" >/dev/null; then break; fi
+  sleep 1
+done
+wait_log "TenthBell: signature used"
 adb shell input tap 535 1156
+wait_log "TenthBell: bell used"
 shot 02-combat
 adb shell input tap 640 76
 wait_log 'TenthBell: paused'

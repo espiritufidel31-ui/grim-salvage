@@ -65,11 +65,13 @@ func connect_run():
 func start_new():
 	if run!=null:run.dispose()
 	run=Run.new();connect_run();screen="play";overlay="";evolve=false;input_delay=.06
+	if music!=null:music.stream_paused=false
 	run.new_run(selection,profile,first_charm);print("TenthBell: start hero=",selection," wave=1")
 func continue_saved():
 	if disk_run.is_empty():return
 	if run!=null:run.dispose()
 	run=Run.new();connect_run();screen="play";overlay="";evolve=false
+	if music!=null:music.stream_paused=false
 	run.restore(disk_run.duplicate(true),profile);print("TenthBell: continued wave=",run.wave)
 func save_now():
 	if run!=null:
@@ -135,8 +137,10 @@ func act(command):
 				else:start_new()
 		"new_confirm":start_new()
 		"continue":continue_saved()
-		"skill":if run!=null and overlay=="":run.signature()
-		"bell":if run!=null and overlay=="":run.ring()
+		"skill":
+			if run!=null and overlay=="" and run.signature():print("TenthBell: signature used")
+		"bell":
+			if run!=null and overlay=="" and run.ring():print("TenthBell: bell used")
 		"pause":pause_game()
 		"resume":resume_game()
 		"settings":overlay="settings"

@@ -24,7 +24,9 @@ jobs:
           python TheTenthBell/tools/import_cast.py
       - name: Prepare station scenery and fonts
         run: |
-          if [ -f TheTenthBell/tools/station_art.py ]; then python TheTenthBell/tools/station_art.py; fi
+          python TheTenthBell/tools/station_art.py
+          python TheTenthBell/tools/prepare_fonts.py
+          python TheTenthBell/tools/sound.py
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -39,13 +41,14 @@ jobs:
       - name: Import and test
         if: ${{ hashFiles('TheTenthBell/game/station.gd') != '' }}
         run: |
-          godot --headless --path TheTenthBell --editor --import > /tmp/bell-import.log 2>&1 || { cat /tmp/bell-import.log; exit 1; }
+          godot --headless --path TheTenthBell --editor --import --quit > /tmp/bell-import.log 2>&1 || { cat /tmp/bell-import.log; exit 1; }
           if grep -E 'SCRIPT ERROR:|Parse Error:|Failed to load script' /tmp/bell-import.log; then cat /tmp/bell-import.log; exit 1; fi
           timeout 200 godot --headless --path TheTenthBell --script res://tests/check_game.gd 2>&1 | tee /tmp/bell-qa.log
           grep 'BELL TESTS PASSED' /tmp/bell-qa.log
+          if grep -E 'SCRIPT ERROR:|ERROR:' /tmp/bell-qa.log; then exit 1; fi
           mkdir -p "$GITHUB_WORKSPACE/build"
           if [ -f TheTenthBell/tests/capture.gd ]; then
-            xvfb-run -a godot --path TheTenthBell --rendering-method gl_compatibility --audio-driver Dummy --script res://tests/capture.gd
+            BELL_CAPTURE_DIR="$GITHUB_WORKSPACE/build" xvfb-run -a godot --path TheTenthBell --rendering-method gl_compatibility --audio-driver Dummy --script res://tests/capture.gd
           fi
       - name: Export signed APK
         if: ${{ hashFiles('TheTenthBell/game/station.gd') != '' }}
@@ -63,7 +66,8 @@ jobs:
           export/android/debug_keystore_user = "androiddebugkey"
           export/android/debug_keystore_pass = "android"
           SETTINGS
-          godot --headless --path TheTenthBell --export-debug Android "$GITHUB_WORKSPACE/build/The-Tenth-Bell-v1.0.0.apk"
+          godot --headless --path TheTenthBell --export-debug Android "$GITHUB_WORKSPACE/build/The-Tenth-Bell-v1.0.0.apk" 2>&1 | tee /tmp/export.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Export failed' /tmp/export.log; then exit 1; fi
           TOOLS=$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)
           "$TOOLS" verify --verbose --print-certs build/*.apk
           "$(dirname "$TOOLS")/aapt" dump badging build/*.apk | head -45
@@ -86,3 +90,34 @@ jobs:
         with:
           name: The-Tenth-Bell-Playtest
           path: build/*.png
+
+  android-playtest:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: The-Tenth-Bell-APK
+          path: install
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install and play on Android
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          arch: x86_64
+          target: default
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot
+          script: bash TheTenthBell/tests/android-smoke.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: The-Tenth-Bell-Android-Playtest
+          path: android-results/

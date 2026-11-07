@@ -79,6 +79,8 @@ def run(zip_dir):
         def read(name):
             url=f'https://raw.githubusercontent.com/{repo}/{ref}/'+quote(path+'/'+folder+'/'+name,safe='/')
             b=download(url)
+            if b.startswith(b"version https://git-lfs.github.com/spec"):
+                b=download("https://media.githubusercontent.com/media/"+repo+"/"+ref+"/"+quote(path+"/"+folder+"/"+name,safe="/"))
             digest=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
             if digest!=files[name]:raise ValueError(f'Unexpected {folder}/{name}')
             return b
